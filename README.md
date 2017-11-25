@@ -1,5 +1,5 @@
-# FamilyPet
-The Ortega and Engmann households family pet. A hacked and redesigned Roomba to support Alexa command control, orientation and owner tracking, and environment control.
+# Project Icarus
+Home Defense System using Alexa enabled triggers, OpenCV camera locking, and a really cool nerf gun.
 
 # Installation
 
@@ -8,59 +8,21 @@ pip install python-firebase
 pip install requests
 ```
 
-Then generate a config file for the drive train.
-```bash
-python configGenerator.py
-```
-
 # Running
 ```bash
-python3 atom_controller_interface.py
+python3 icarus_controller_interface.py
 ```
 
 ## Different Commands we Support:
-<b>ComeToMe:</b> </br>
-Come to {INSERT NAME HERE} </br>
-Go to {INSERT NAME HERE} </br>
+<b>Launch:</b> </br>
+Alexa launch Project Icarus </br>
 
-<b>CleanUp:</b>  </br>
-Atom clean up this mess </br>
-Atom clean up this room </br>
-Atom clean up after yourself </br>
-Atom clean up </br>
-Atom clean this room </br>
-Atom clean this up </br>
-Atom clean now </br>
-Atom clean </br>
+<b>Fire:</b> </br>
+Shoot the Strangers </br>
+Open Fire </br>
 
-<b>Tricks:</b> </br>
-Atom do tricks </br>
-Atom be fancy </br>
-Atom do tricks </br>
+<b>Close:</b> </br>
+Exit </br>
 
-<b>GoHome:</b> </br>
-Atom go home and charge </br>
-Atom go charge </br>
-Atom you are finished go home to charge </br>
-Atom go to your charging station </br>
-Atom find your charging station </br>
-Atom go back to your charging station </br>
-Atom head back to your charging station </br>
-Atom go charge yourself </br>
-Atom go charge </br>
-
-<b>Speak:</b> </br>
-Atom tell me something </br>
-Atom speak </br>
-Atom how is it going Atom </br>
-Atom do you have anything to tell me </br>
-
-# Want to make your own shell for your Roomba?
-
-## Adjusted 3D Print files
+## 3D Model
 TODO
-
-## Instructions on raspberry pi board assembly
-http://www.irobot.com/~/media/MainSite/PDFs/About/STEM/Create/Create_2_Serial_to_33V_Logic.pdf
-http://www.irobotweb.com/-/media/MainSite/PDFs/About/STEM/Create/RaspberryPi_Tutorial.pdf?la=en
-

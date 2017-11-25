@@ -1,0 +1,13 @@
+[Unit]
+Description=Icarus Service
+Wants=network-online.target
+After=network.target network-online.target
+
+[Service]
+WorkingDirectory=/home/pi/Desktop/Project-Icarus/
+Type=idle
+User=pi
+ExecStart=/usr/bin/python /home/pi/Desktop/Project-Icarus/icarus_controller_interface.py > /home/pi/Desktop/icarus.log 2>&1
+
+[Install]
+WantedBy=multi-user.target
