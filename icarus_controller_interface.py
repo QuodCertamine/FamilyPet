@@ -4,7 +4,6 @@ import icarus_state_machine as istm
 import icarus_alexa_interface as pii
 import time
 
-
 """
 This is the main, establishes checker and updates the state machine 
 """

@@ -6,9 +6,13 @@ var slotType = '';
 var nameValue = '';
 
 /*
-The way this code works is by making requests to firebase, updating the status of Icarus so that Icarus can 
-execute the appropriate functions.
+The way this code works is by making requests to firebase, updating the status of Icarus 
+so that Icarus can execute the appropriate functions.
 It does this by:
+
+1) Identifying which request it needs to handle
+2) Responds with a verbal queue
+3) Updates the Database that Project Icarus reads
 */
 
 // --------------- Helpers that build all of the responses -----------------------
@@ -48,29 +52,33 @@ function getWelcomeResponse(callback) {
     // If we wanted to initialize the session to have some attributes we could add those here.
     const sessionAttributes = {};
     const cardTitle = 'Welcome';
-    const speechOutput = 'Icarus is awake and armed ' +
-        'What shall we do?';
-    // If the user either does not reply to the welcome message or says something that is not
-    // understood, they will be prompted again with this text.
-    const repromptText = 'Icarus is awake and armed ' +
-        'What shall we do?';
+    const speechOutput = 'Beginning the purge... ' +
+        'May god help us all';
+    const repromptText = 'Beginning the purge... ' +
+        'May god help us all';
     const shouldEndSession = false;
+    // starts Project Icarus 
+    var today = new Date();
+    let time = today.toLocaleString();
+    database.ref("status/").update({
+        command: 'start',
+        timestamp: time
+    },() => { 
+        callback(sessionAttributes,
+            buildSpeechletResponse(cardTitle, speechOutput, repromptText, shouldEndSession));
+    });}
 
-    callback(sessionAttributes,
-        buildSpeechletResponse(cardTitle, speechOutput, repromptText, shouldEndSession));
-}
-
-function cleanUp(callback, database) {
-    const cardTitle = 'Clean Up';
-    let repromptText = '';
+function lock(callback, database) {
+    const cardTitle = 'lock';
+    let repromptText = 'Resetting the lock';
     let sessionAttributes = {};
     const shouldEndSession = false;
-    let speechOutput = 'Cleaning up... may god help us all';
+    let speechOutput = 'Resetting the lock';
 
     var today = new Date();
     let time = today.toLocaleString();
     database.ref("status/").update({
-        command: 'cleanUp',
+        command: 'lock',
         timestamp: time
     },() => { 
         callback(sessionAttributes,
@@ -80,10 +88,10 @@ function cleanUp(callback, database) {
 
 function goHome(callback, database) {
     const cardTitle = 'Going Home';
-    let repromptText = '';
+    let repromptText = 'Disarmed and Returning to Home state';
     let sessionAttributes = {};
     const shouldEndSession = false;
-    let speechOutput = 'Disarmed';
+    let speechOutput = 'Disarmed and returning to Home state';
 
     var today = new Date();
     let time = today.toLocaleString();
@@ -98,10 +106,10 @@ function goHome(callback, database) {
 
 function stop(callback, database) {
     const cardTitle = 'Stop';
-    let repromptText = '';
+    let repromptText = 'Haulting';
     let sessionAttributes = {};
     const shouldEndSession = false;
-    let speechOutput = 'Haulting all assault';
+    let speechOutput = 'Haulting';
 
     var today = new Date();
     let time = today.toLocaleString();
@@ -117,7 +125,7 @@ function stop(callback, database) {
 function handleSessionEndRequest(callback) {
     //Saying Goodbye once a session ends
     const cardTitle = 'Session Ended';
-    const speechOutput = 'Icarus is tired and is going to go back to sleep';
+    const speechOutput = '';
     // Setting this to true ends the session and exits the skill.
     const shouldEndSession = true;
 
@@ -154,8 +162,8 @@ function onIntent(intentRequest, session, database, callback) {
     // Dispatch to your skill's intent handlers
     if (intentName === 'AMAZON.HelpIntent') {
         getWelcomeResponse(callback);
-    } else if (intentName === 'CleanUp') {
-        cleanUp(callback, database);
+    } else if (intentName === 'Lock') {
+        lock(callback, database);
     } else if (intentName === 'GoHome') {
         goHome(callback, database);
     } else if (intentName === 'Stop') {
@@ -173,7 +181,7 @@ function onIntent(intentRequest, session, database, callback) {
  */
 function onSessionEnded(sessionEndedRequest, session) {
     console.log(`onSessionEnded requestId=${sessionEndedRequest.requestId}, sessionId=${session.sessionId}`);
-    // Add cleanup logic here
+    // Add cleanup logic here, just incase anything is still open
 }
 
 // --------------- Main handler -----------------------

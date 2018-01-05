@@ -1,7 +1,7 @@
 {
-  "name": "Atom-Alexa",
+  "name": "Project-Icarus",
   "version": "1.0.0",
-  "description": "Atom's Lambda Server for Alexa-Firebase cross functionality",
+  "description": "Project Icarus's Lambda Server for Alexa-Firebase cross functionality",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

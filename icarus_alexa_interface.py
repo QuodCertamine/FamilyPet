@@ -4,9 +4,8 @@ from firebase import firebase
 from time import gmtime, strftime, localtime
 
 """
-This is the command interface. Connects to Alexa
+This is the Alexa Interface, updates state and controls database access
 """
-
 
 class Alexa():
 	def __init__(self, location=None, user=None, command='standby'):

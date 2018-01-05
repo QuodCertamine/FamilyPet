@@ -6,9 +6,10 @@ from firebase import firebase
 from random import *
 
 """ 
-The State machine> Takes inputs and outputs to necessary state depending
+The State machine takes inputs and outputs to necessary state depending
 on the inputs
 """
+
 def resetStatus(status):
     fb = firebase.FirebaseApplication("https://project-icarus.firebaseio.com", None)
     data = {'command':status}
@@ -45,14 +46,13 @@ class State(object):
         """
         return self.__class__.__name__
 
-
 class Standby(State):
     """ 
     The state which indicates that there are limited device capabilities.
     """
 
     def on_event(self, event):
-        if event['command'] != 'standby':
+        if event['command'] == 'start':
             # if going to active mode, turn on safe mode functionality
             self._icarus_command_interface.start()
             self._icarus_state._started_at = resetTime()
@@ -70,36 +70,16 @@ class Active(State):
             return goHome()
         elif event['command'] == 'stop':
             return Stop()
+        elif event['command'] == 'lock':
+            return Lock()
 
         time_passed = datetime.datetime.utcnow() - self._icarus_state._started_at
-        # if over 200 seconds have passed, place back in passive mode
-        if time_passed.total_seconds() > 200:
+        # if over 90 seconds have passed, place back in passive mode
+        if time_passed.total_seconds() > 90:
             resetStatus('standby')
             self._icarus_command_interface.stop()
             return Standby()
         return self
-
-class Stop(State):
-    """
-    Stops whatever command is currently happening and return to standby.
-    """
-    def on_event(self, event):
-        resetStatus('standby')
-        self._icarus_command_interface.stop()
-        return Standby()
-     
-class goHome(State):
-    """ 
-    The state when the Icarus is returning
-    """
-
-    def on_event(self, event):
-        # Do goHome, reset to default state and then return to standby
-        print('Icarus is moving resetting')
-        self._icarus_command_interface.goHome()
-        resetStatus('active')
-        self._icarus_state._started_at = resetTime()
-        return Active()
 
 class cleanUp(State):
     """
@@ -107,7 +87,7 @@ class cleanUp(State):
     """
 
     def on_event(self, event):
-        # Do cleanUp, reset to default state and then return to standby
+        # start, then "clean up" reset to default state and then return to standby
         print('Icarus is starting to clean up')
         self._icarus_command_interface.cleanUp()
         resetStatus('cleaning')
@@ -125,12 +105,44 @@ class cleaning(State):
             return goHome()
         elif event['command'] == 'stop':
             return Stop()
+        
         time_passed = datetime.datetime.utcnow() - self._icarus_state._started_at
-        if event['command'] == 'goHome' or time_passed.total_seconds() > 30:
+        if event['command'] == 'goHome' or time_passed.total_seconds() > 60:
             resetStatus('standby')
             self._icarus_command_interface.stop()
             return Standby()
         return cleaning()
+
+class goHome(State):
+    """ 
+    The state when the Icarus is returning
+    """
+
+    def on_event(self, event):
+        # Do goHome, reset to default state and then return to standby
+        print('Icarus is moving resetting')
+        self._icarus_command_interface.goHome()
+        resetStatus('active')
+        self._icarus_state._started_at = resetTime()
+        return Active()
+
+class Stop(State):
+    """
+    Stops whatever command is currently happening and return to standby.
+    """
+    def on_event(self, event):
+        resetStatus('standby')
+        self._icarus_command_interface.stop()
+        return Standby()
+
+class Lock(State):
+    """
+    Locks Project Icarus and return to standby.
+    """
+    def on_event(self, event):
+        resetStatus('standby')
+        self._icarus_command_interface.lock()
+        return Standby()
 
 class StateMachine(object):
     """ 
