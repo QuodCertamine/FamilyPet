@@ -3,18 +3,23 @@ Home Defense System using Alexa enabled triggers, OpenCV camera locking, and a r
 Click the image below to watch the video. </br>
 [![Watch the video](https://github.com/QuodCertamine/Project-Icarus/blob/master/img/youtube.png)](https://youtu.be/fzvNv4QeY4A)
 
-## Table of Contents:
-Instructions
-Necessary Hardware
-Hardware Build Instructions
-Software Install Instructions
-Alexa Integration
-Copyright and Licensing
+Table of Contents
+============
+* [Instructions](#instructions)
+* [Necessary Hardware](#necessary-hardware)
+* [Hardware Build](#hardware-build)
+* [Software Install](#software-install)
+* [Alexa Integration](#alexa-integration)
+* [Running](#running)
+* [Model](#model)
+* [License](#license)
 
-## Instructions:
+Instructions
+============
 *** TODO: Intro instructions *** </br>
 
-### Necessary Hardware:
+Necessary Hardware
+============
 *** TODO: Links for all the hardware *** </br>
 1x <a href="https://www.adafruit.com/product/3055" target="__blank">Raspberry Pi 3</a></br>
 1x <a href="https://www.amazon.com/gp/product/B00TIY5JM8/ref=oh_aui_detailpage_o08_s00?ie=UTF8&psc=1" target="__blank">Adafruit Motor Hat for Raspberry Pi</a></br>
@@ -51,14 +56,15 @@ Screws: </br>
 1x <a target="__blank">Raspberry Pi 3 Container</a></br>
 Optional: Spraypaint </br>
 
-### Hardware Instructions
-
+Hardware build
+============
 *** TODO: Hardware Instructions *** </br>
 
 </br>
 Power the Raspberry Pi with any 5V supply and power the Motor Hat either using a 12V supply or a 5V supply and the 5-12V Buck Boost Converter. Now you are ready to install the necessary software
 
-### Software Instructions
+Software install
+============
 To get the Raspberry Pi up and running we need to install the necessary libraries
 
 ```bash
@@ -84,9 +90,9 @@ https://www.raspberrypi-spy.co.uk/2015/10/how-to-autorun-a-python-script-on-boot
 
 After setting up the service file your Raspberry Pi should automatically start Project Icarus on boot.
 
-### Alexa Installation
-*** TODO: *** </br>
-Install node dependencies
+Alexa Integration
+============
+Go to the alexa directory and install node dependencies.
 ```bash
 cd alexa-icarus
 npm install
@@ -105,28 +111,34 @@ config = {
   }
 ```
 
-Package everything in the alexa-icarus directory as a .zip file and store it in your Amazon Lambda service
-*** TODO: include instructions on how to set up Amazon Lamda service *** </br>
+Save all items in the folder as a .zip file.
 
-## Running
-```bash
-python3 icarus_controller_interface.py
-```
+Follow the following instructions from Amazon to set up your own Lambda service and nodejs skill:</br>
+https://developer.amazon.com/alexa-skills-kit/alexa-skill-quick-start-tutorial </br>
+Load the .zip file into your lambda service </br>
 
+Add the following command configurations to your Alexa skill in the Alexa skill developer portal </br>
 ## Different Alexa Commands Supported:
 "Alexa launch Project Icarus" </br>
 "Clean up" </br>
 "Lock" </br>
 "Stop" </br>
 
-## 3D Model
+Running
+============
+```bash
+python3 icarus_controller_interface.py
+```
+Model
+============
 *** TODO: include 3D Model *** </br>
 ![3DModel](https://github.com/QuodCertamine/Project-Icarus/blob/master/models/3DModel.png)
 
-# Copyright and Licensing
+License
+============
 The MIT License
 
-Copyright (c) 2004-2017 Quod Certamine
+Copyright (c) 2004-2018 Quod Certamine
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
