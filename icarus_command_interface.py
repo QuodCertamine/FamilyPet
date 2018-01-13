@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 
 import icarus_turrent as itc
-import time
 from pygame import mixer
 import RPi.GPIO as GPIO
 
@@ -14,20 +13,22 @@ class Command():
         """ 
         Create an instance of the drive train connection
         """
-        GPIO.setmode(GPIO.BCM)
-        GPIO.setup(18, GPIO.OUT)
+        self._turrent = itc.Turrent(friendly_mode=True)
 
     def start(self):
         """
         Exit Standby mode
         """
-
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(18, GPIO.OUT)
+        self._pwm = GPIO.PWM(18,100)
 
     def stop(self):
         """
         Stops whatever current function is happening,
         enable standby mode
         """
+        GPIO.cleanup()
 
     def cleanUp(self):
         """
@@ -35,17 +36,18 @@ class Command():
         Uses OpenCV to locate where individuals are and then automatically begins the onslaught
         aka firing
         """
-        pwm = GPIO.PWM(18, 100)
-        pwm.start(5)
+        self._pwm.changeDutyCycle(23)
+        self._turrent.calibrate()
+        self.motion_detection()
 
     def goHome(self):
         """
         Return back into docking position
         """
-        pwm = GPIO.PWM(18, 115)
-        pwm.start(5)
+        self._turrent.returnHome()
 
     def lock(self):
         """
         Redo the lock
         """
+        self._pwm.ChangeDutyCycle(14)
