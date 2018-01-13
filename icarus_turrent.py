@@ -264,9 +264,6 @@ class Turret(object):
         :return:
         """
 
-        Turret.move_forward(self.sm_x, 1)
-        Turret.move_forward(self.sm_y, 1)
-
         print 'Commands: Pivot with (a) and (d). Tilt with (w) and (s). Exit with (q)\n'
         with raw_mode(sys.stdin):
             try:
