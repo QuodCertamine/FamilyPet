@@ -88,6 +88,11 @@ Then follow the following instructions to take the icarus.service file and enabl
 https://www.raspberrypi-spy.co.uk/2015/10/how-to-autorun-a-python-script-on-boot-using-systemd/
 </br>
 
+```bash
+source ~/.profile
+workon cv
+```
+
 After setting up the service file your Raspberry Pi should automatically start Project Icarus on boot.
 
 Alexa Integration
