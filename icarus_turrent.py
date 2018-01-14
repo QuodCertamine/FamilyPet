@@ -266,6 +266,7 @@ class Turret(object):
         Turret.move_forward(self.sm_y, 1)
         Turret.move_forward(self.sm_x, 1)
         time.sleep(1)
+        Turret.move_forward(self.sm_y, 40)
         Turret.move_backward(self.sm_x, 600)
 
     def home(self):
@@ -357,3 +358,25 @@ class Turret(object):
         self.mh.getMotor(3).run(Adafruit_MotorHAT.RELEASE)
         self.mh.getMotor(4).run(Adafruit_MotorHAT.RELEASE)
         GPIO.output(LASER_PIN, GPIO.LOW)
+
+if __name__ == "__main__":
+    t = Turret(friendly_mode=True)
+
+    user_input = raw_input("Choose an input mode: (1) Motion Detection, (2) Interactive (3) Custom\n")
+
+    if user_input == "1":
+        if raw_input("Live video? (y, n)\n").lower() == "y":
+            t.motion_detection(show_video=True)
+        else:
+            t.motion_detection()
+    elif user_input == "2":
+        if raw_input("Live video? (y, n)\n").lower() == "y":
+            thread.start_new_thread(VideoUtils.live_video, ())
+        t.interactive()
+    elif user_input == "3":
+        t.calibrate()
+        t.motion_detection()
+        #t.motion_detection(show_video=True)
+        t.home()
+    else:
+        print "Unknown input mode. Please choose a number (1) or (2) or (3)"

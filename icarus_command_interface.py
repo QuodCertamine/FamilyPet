@@ -22,13 +22,12 @@ class Command():
         """
         Exit Standby mode
         """
-        if(self._flag == False){
+        if(self._flag == False):
             GPIO.setmode(GPIO.BCM)
             GPIO.setup(18, GPIO.OUT)
             self._pwm = GPIO.PWM(18,100)
             self._pwm.start(14)
             self._flag = True
-        }
 
     def stop(self):
         """
