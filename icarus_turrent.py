@@ -177,10 +177,6 @@ class Turret(object):
         atexit.register(self.__turn_off_motors)
 
         # Stepper motor 1
-        #self.sm_x = self.mh.getStepper(100, 1)      # 200 steps/rev, motor port #1
-        #self.sm_x.setSpeed(90)                       # 5 RPM
-        #self.current_x_steps = 0
-        
         self.sm_x = self.mh.getStepper(600, 1)      # 200 steps/rev, motor port #1
         self.sm_x.setSpeed(200)                       # 5 RPM
         self.current_x_steps = 0
@@ -289,8 +285,6 @@ class Turret(object):
         Turret.move_forward(self.sm_y, 1)
         Turret.move_forward(self.sm_x, 1)
         time.sleep(3)
-        Turret.move_backward(self.sm_x, 800)
-        Turret.move_forward(self.sm_x, 800)
         print 'Commands: Pivot with (a) and (d). Tilt with (w) and (s). Exit with (q)\n'
         with raw_mode(sys.stdin):
             try:
