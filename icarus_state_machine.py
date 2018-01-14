@@ -52,7 +52,7 @@ class Standby(State):
     """
 
     def on_event(self, event):
-        if event['command'] == 'start':
+        if event['command'] != 'standby':
             # if going to active mode, turn on safe mode functionality
             self._icarus_command_interface.start()
             self._icarus_state._started_at = resetTime()
@@ -74,8 +74,8 @@ class Active(State):
             return Lock()
 
         time_passed = datetime.datetime.utcnow() - self._icarus_state._started_at
-        # if over 90 seconds have passed, place back in passive mode
-        if time_passed.total_seconds() > 90:
+        # if over 120 seconds have passed, place back in passive mode
+        if time_passed.total_seconds() > 120:
             resetStatus('standby')
             self._icarus_command_interface.stop()
             return Standby()
@@ -107,7 +107,7 @@ class cleaning(State):
             return Stop()
         
         time_passed = datetime.datetime.utcnow() - self._icarus_state._started_at
-        if event['command'] == 'goHome' or time_passed.total_seconds() > 60:
+        if event['command'] == 'goHome' or time_passed.total_seconds() > 90:
             resetStatus('standby')
             self._icarus_command_interface.stop()
             return Standby()
