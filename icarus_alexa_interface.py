@@ -10,7 +10,7 @@ This is the Alexa Interface, updates state and controls database access
 class Alexa():
 	def __init__(self, location=None, user=None, command='standby'):
     	# initialize Firebase Application connection
-		self._fb = firebase.FirebaseApplication("https://project-icarus.firebaseio.com", None)
+		self._fb = firebase.FirebaseApplication("https://proj-icarus.firebaseio.com", None)
 		
 		# Post Initial State
 		time = strftime("%Y-%m-%d %H:%M:%S", gmtime())

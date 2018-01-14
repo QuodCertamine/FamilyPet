@@ -11,7 +11,7 @@ on the inputs
 """
 
 def resetStatus(status):
-    fb = firebase.FirebaseApplication("https://project-icarus.firebaseio.com", None)
+    fb = firebase.FirebaseApplication("https://proj-icarus.firebaseio.com", None)
     data = {'command':status}
     result = fb.patch("/status", data)
 
