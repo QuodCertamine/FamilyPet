@@ -38,16 +38,17 @@ class Command():
         """
         self._pwm.changeDutyCycle(23)
         self._turrent.calibrate()
-        self.motion_detection()
+        self._turrentmotion_detection()
 
     def goHome(self):
         """
         Return back into docking position
         """
-        self._turrent.returnHome()
+        self._turrent.home()
 
     def lock(self):
         """
         Redo the lock
         """
         self._pwm.ChangeDutyCycle(14)
+        self._turrent._turn_off_motors()
