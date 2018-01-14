@@ -11,15 +11,24 @@ class Command():
         """ 
         Create an instance of the drive train connection
         """
-        self._turrent = itc.Turrent(friendly_mode=True)
+        self._turrent = itc.Turret(friendly_mode=False)
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(18, GPIO.OUT)
+        self._pwm = GPIO.PWM(18,100)
+        self._pwm.start(14)
+        self._flag = True
 
     def start(self):
         """
         Exit Standby mode
         """
-        GPIO.setmode(GPIO.BCM)
-        GPIO.setup(18, GPIO.OUT)
-        self._pwm = GPIO.PWM(18,100)
+        if(self._flag == False){
+            GPIO.setmode(GPIO.BCM)
+            GPIO.setup(18, GPIO.OUT)
+            self._pwm = GPIO.PWM(18,100)
+            self._pwm.start(14)
+            self._flag = True
+        }
 
     def stop(self):
         """
@@ -34,19 +43,19 @@ class Command():
         Uses OpenCV to locate where individuals are and then automatically begins the onslaught
         aka firing
         """
-        self._pwm.changeDutyCycle(23)
+        self._pwm.ChangeDutyCycle(22)
         self._turrent.calibrate()
-        self._turrentmotion_detection()
+        self._turrent.motion_detection()
 
     def goHome(self):
         """
         Return back into docking position
         """
         self._turrent.home()
+        self._flag = False
 
     def lock(self):
         """
         Redo the lock
         """
         self._pwm.ChangeDutyCycle(14)
-        self._turrent._turn_off_motors()

@@ -72,8 +72,8 @@ class Active(State):
             return Lock()
 
         time_passed = datetime.datetime.utcnow() - self._icarus_state._started_at
-        # if over 120 seconds have passed, place back in passive mode
-        if time_passed.total_seconds() > 120:
+        # if over 60 seconds have passed, place back in passive mode
+        if time_passed.total_seconds() > 60:
             resetStatus('standby')
             self._icarus_command_interface.stop()
             return Standby()
@@ -87,29 +87,10 @@ class cleanUp(State):
     def on_event(self, event):
         # start, then "clean up" reset to default state and then return to standby
         print('Icarus is starting to clean up')
-        self._icarus_command_interface.cleanUp()
         resetStatus('cleaning')
+        self._icarus_command_interface.cleanUp()
         self._icarus_state._started_at = resetTime()
-        return cleaning()
-
-class cleaning(State):
-    """
-    The state when the device is currently in the process of cleaning
-    """
-
-    def on_event(self, event):
-        print('Cleaning')
-        if event['command'] == 'goHome':
-            return goHome()
-        elif event['command'] == 'stop':
-            return Stop()
-        
-        time_passed = datetime.datetime.utcnow() - self._icarus_state._started_at
-        if event['command'] == 'goHome' or time_passed.total_seconds() > 90:
-            resetStatus('standby')
-            self._icarus_command_interface.stop()
-            return Standby()
-        return cleaning()
+        return goHome()
 
 class goHome(State):
     """ 

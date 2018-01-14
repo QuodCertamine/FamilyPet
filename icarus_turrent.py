@@ -265,8 +265,8 @@ class Turret(object):
         """
         Turret.move_forward(self.sm_y, 1)
         Turret.move_forward(self.sm_x, 1)
-        time.sleep(3)
-        Turret.move_backward(self.sm_x, 1000)
+        time.sleep(1)
+        Turret.move_backward(self.sm_x, 600)
 
     def home(self):
         """

@@ -265,8 +265,8 @@ class Turret(object):
         """
         Turret.move_forward(self.sm_y, 1)
         Turret.move_forward(self.sm_x, 1)
-        time.sleep(3)
-        Turret.move_backward(self.sm_x, 1000)
+        time.sleep(1)
+        Turret.move_backward(self.sm_x, 600)
 
     def home(self):
         """
@@ -359,7 +359,7 @@ class Turret(object):
         GPIO.output(LASER_PIN, GPIO.LOW)
 
 if __name__ == "__main__":
-    t = Turret(friendly_mode=False)
+    t = Turret(friendly_mode=True)
 
     user_input = raw_input("Choose an input mode: (1) Motion Detection, (2) Interactive (3) Custom\n")
 
@@ -374,8 +374,8 @@ if __name__ == "__main__":
         t.interactive()
     elif user_input == "3":
         t.calibrate()
-        t.motion_detection(show_video=True)
+        t.motion_detection()
+        #t.motion_detection(show_video=True)
         t.home()
-        t._turn_off_motors()
     else:
         print "Unknown input mode. Please choose a number (1) or (2) or (3)"
