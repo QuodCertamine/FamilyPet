@@ -79,14 +79,13 @@ class VideoUtils(object):
 
         camera = cv2.VideoCapture(camera_port)
         time.sleep(0.25)
-
         # initialize the first frame in the video stream
         firstFrame = None
         tempFrame = None
         count = 0
-
+        duration = 0
         # loop over the frames of the video
-        while True:
+        while duration < 60:
             # grab the current frame and initialize the occupied/unoccupied
             # text
 
@@ -148,7 +147,7 @@ class VideoUtils(object):
                 # if the `q` key is pressed, break from the lop
                 if key == ord("q"):
                     break
-
+            duration += 1
         # cleanup the camera and close any open windows
         camera.release()
         cv2.destroyAllWindows()
@@ -178,13 +177,18 @@ class Turret(object):
         atexit.register(self.__turn_off_motors)
 
         # Stepper motor 1
-        self.sm_x = self.mh.getStepper(100, 1)      # 200 steps/rev, motor port #1
-        self.sm_x.setSpeed(90)                       # 5 RPM
+        #self.sm_x = self.mh.getStepper(100, 1)      # 200 steps/rev, motor port #1
+        #self.sm_x.setSpeed(90)                       # 5 RPM
+        #self.current_x_steps = 0
+        
+        self.sm_x = self.mh.getStepper(600, 1)      # 200 steps/rev, motor port #1
+        self.sm_x.setSpeed(200)                       # 5 RPM
         self.current_x_steps = 0
 
         # Stepper motor 2
         self.sm_y = self.mh.getStepper(100, 2)      # 200 steps/rev, motor port #2
-        self.sm_y.setSpeed(120)                       # 5 RPM
+        #self.sm_y.setSpeed(120)                       # 5 RPM
+        self.sm_y.setSpeed(5)
         self.current_y_steps = 0
 
         # Relay
@@ -221,29 +225,29 @@ class Turret(object):
         if (target_steps_x - self.current_x_steps) > 0:
             self.current_x_steps += 1
             if MOTOR_X_REVERSED:
-                t_x = threading.Thread(target=Turret.move_forward, args=(self.sm_x, 2,))
+                t_x = threading.Thread(target=Turret.move_forward, args=(self.sm_x, 20,))
             else:
-                t_x = threading.Thread(target=Turret.move_backward, args=(self.sm_x, 2,))
+                t_x = threading.Thread(target=Turret.move_backward, args=(self.sm_x, 20,))
         elif (target_steps_x - self.current_x_steps) < 0:
             self.current_x_steps -= 1
             if MOTOR_X_REVERSED:
-                t_x = threading.Thread(target=Turret.move_backward, args=(self.sm_x, 2,))
+                t_x = threading.Thread(target=Turret.move_backward, args=(self.sm_x, 20,))
             else:
-                t_x = threading.Thread(target=Turret.move_forward, args=(self.sm_x, 2,))
+                t_x = threading.Thread(target=Turret.move_forward, args=(self.sm_x, 20,))
 
         # move y
         if (target_steps_y - self.current_y_steps) > 0:
             self.current_y_steps += 1
             if MOTOR_Y_REVERSED:
-                t_y = threading.Thread(target=Turret.move_backward, args=(self.sm_y, 2,))
+                t_y = threading.Thread(target=Turret.move_backward, args=(self.sm_y, 5,))
             else:
-                t_y = threading.Thread(target=Turret.move_forward, args=(self.sm_y, 2,))
+                t_y = threading.Thread(target=Turret.move_forward, args=(self.sm_y, 5,))
         elif (target_steps_y - self.current_y_steps) < 0:
             self.current_y_steps -= 1
             if MOTOR_Y_REVERSED:
-                t_y = threading.Thread(target=Turret.move_forward, args=(self.sm_y, 2,))
+                t_y = threading.Thread(target=Turret.move_forward, args=(self.sm_y, 5,))
             else:
-                t_y = threading.Thread(target=Turret.move_backward, args=(self.sm_y, 2,))
+                t_y = threading.Thread(target=Turret.move_backward, args=(self.sm_y, 5,))
 
         # fire if necessary
         if not self.friendly_mode:
@@ -258,12 +262,35 @@ class Turret(object):
         t_y.join()
         t_fire.join()
 
+    def calibrate(self):
+        """
+        Calibrate, move the gun outward to firing position.
+        :return:
+        """
+        Turret.move_forward(self.sm_y, 1)
+        Turret.move_forward(self.sm_x, 1)
+        time.sleep(3)
+        Turret.move_backward(self.sm_x, 1000)
+
+    def home(self):
+        """
+        Move the turrent back to the home position
+        :return:
+        """
+
+        Turret.move_forward(self.sm_x, 1000)
+          
     def interactive(self):
         """
         Starts an interactive session. Key presses determine movement.
         :return:
         """
 
+        Turret.move_forward(self.sm_y, 1)
+        Turret.move_forward(self.sm_x, 1)
+        time.sleep(3)
+        Turret.move_backward(self.sm_x, 800)
+        Turret.move_forward(self.sm_x, 800)
         print 'Commands: Pivot with (a) and (d). Tilt with (w) and (s). Exit with (q)\n'
         with raw_mode(sys.stdin):
             try:
@@ -274,24 +301,24 @@ class Turret(object):
 
                     if ch == "w":
                         if MOTOR_Y_REVERSED:
-                            Turret.move_forward(self.sm_y, 1)
+                            Turret.move_forward(self.sm_y, 20)
                         else:
-                            Turret.move_backward(self.sm_y, 1)
+                            Turret.move_backward(self.sm_y, 20)
                     elif ch == "s":
                         if MOTOR_Y_REVERSED:
-                            Turret.move_backward(self.sm_y, 1)
+                            Turret.move_backward(self.sm_y, 20)
                         else:
-                            Turret.move_forward(self.sm_y, 1)
+                            Turret.move_forward(self.sm_y, 20)
                     elif ch == "a":
                         if MOTOR_X_REVERSED:
-                            Turret.move_backward(self.sm_x, 5)
+                            Turret.move_backward(self.sm_x, 20)
                         else:
-                            Turret.move_forward(self.sm_x, 5)
+                            Turret.move_forward(self.sm_x, 20)
                     elif ch == "d":
                         if MOTOR_X_REVERSED:
-                            Turret.move_forward(self.sm_x, 5)
+                            Turret.move_forward(self.sm_x, 20)
                         else:
-                            Turret.move_backward(self.sm_x, 5)
+                            Turret.move_backward(self.sm_x, 20)
                     elif ch == "\n":
                         Turret.fire()
 
