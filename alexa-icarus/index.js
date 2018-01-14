@@ -1,7 +1,7 @@
 'use strict';
 var Alexa = require('alexa-sdk');
 var firebase = require('firebase');
-const APP_ID = "amzn1.ask.skill.54bd94d9-34d5-47a1-8b98-54e403c97dc3";  // Your app ID.
+const APP_ID = "amzn1.ask.skill.10bae565-71f1-4d06-ba85-1c531e6a07f4";  // Your app ID.
 var slotType = '';
 var nameValue = '';
 
@@ -52,21 +52,13 @@ function getWelcomeResponse(callback) {
     // If we wanted to initialize the session to have some attributes we could add those here.
     const sessionAttributes = {};
     const cardTitle = 'Welcome';
-    const speechOutput = 'Beginning the purge... ' +
-        'May god help us all';
-    const repromptText = 'Beginning the purge... ' +
-        'May god help us all';
+    const speechOutput = 'Arming Defenses... ';
+    const repromptText = 'Arming Defenses... ';
     const shouldEndSession = false;
     // starts Project Icarus 
-    var today = new Date();
-    let time = today.toLocaleString();
-    database.ref("status/").update({
-        command: 'start',
-        timestamp: time
-    },() => { 
-        callback(sessionAttributes,
-            buildSpeechletResponse(cardTitle, speechOutput, repromptText, shouldEndSession));
-    });}
+    callback(sessionAttributes,
+        buildSpeechletResponse(cardTitle, speechOutput, repromptText, shouldEndSession));
+}
 
 function lock(callback, database) {
     const cardTitle = 'lock';
@@ -97,6 +89,25 @@ function goHome(callback, database) {
     let time = today.toLocaleString();
     database.ref("status/").update({
         command: 'goHome',
+        timestamp: time
+    },() => { 
+        callback(sessionAttributes,
+            buildSpeechletResponse(cardTitle, speechOutput, repromptText, shouldEndSession));
+    });
+}
+
+function cleanUp(callback, database) {
+    const cardTitle = 'Stop';
+    let repromptText = 'Beginning the purge... ' +
+    'May god help us all';
+    let sessionAttributes = {};
+    const shouldEndSession = false;
+    let speechOutput = 'Beginning the purge... ' +
+    'May god help us all';
+    var today = new Date();
+    let time = today.toLocaleString();
+    database.ref("status/").update({
+        command: 'cleanUp',
         timestamp: time
     },() => { 
         callback(sessionAttributes,
@@ -166,6 +177,8 @@ function onIntent(intentRequest, session, database, callback) {
         lock(callback, database);
     } else if (intentName === 'GoHome') {
         goHome(callback, database);
+    } else if (intentName === 'CleanUp') {
+        cleanUp(callback, database);
     } else if (intentName === 'Stop') {
         stop(callback, database);
     } else if (intentName === 'AMAZON.StopIntent' || intentName === 'AMAZON.CancelIntent') {
