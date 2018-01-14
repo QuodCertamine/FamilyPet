@@ -1,5 +1,3 @@
-#!/usr/bin/python3
-
 import icarus_turrent as itc
 from pygame import mixer
 import RPi.GPIO as GPIO

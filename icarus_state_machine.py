@@ -1,5 +1,3 @@
-#!/usr/bin/python3
-
 import icarus_command_interface as icmdi
 import datetime
 from firebase import firebase

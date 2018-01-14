@@ -1,5 +1,3 @@
-#!/usr/bin/python3
- 
 import icarus_state_machine as istm
 import icarus_alexa_interface as pii
 import time
