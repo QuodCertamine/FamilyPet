@@ -23,24 +23,20 @@ Necessary Hardware
 *** TODO: Links for all the hardware *** </br>
 1x <a href="https://www.adafruit.com/product/3055" target="__blank">Raspberry Pi 3</a></br>
 1x <a href="https://www.amazon.com/gp/product/B00TIY5JM8/ref=oh_aui_detailpage_o08_s00?ie=UTF8&psc=1" target="__blank">Adafruit Motor Hat for Raspberry Pi</a></br>
-1x <a href="https://www.amazon.com/gp/product/B011EBSKK0/ref=oh_aui_detailpage_o01_s00?ie=UTF8&psc=1" target="__blank">DC 5-12V Buck Boost Converter</a></br>
 2x <a target="__blank">Nema 17 Stepper Motor 5:1</a></br>
 4x <a target="__blank">5-8" expansion Springs</a></br>
 1x <a target="__blank">Roll of Nylon String</a></br>
 4x <a target="__blank">Eye Hook</a></br>
-1x <a target="__blank">Endspot Button</a></br>
-1x <a target="__blank">Relay</a></br>
-1x <a target="__blank">Lazer</a></br>
+2x <a target="__blank">Relay</a></br>
 1x <a target="__blank">720p Camera</a></br>
 1x <a target="__blank">MG890 Servo</a></br>
 1x <a target="__blank">Lock</a></br>
-1x <a target="__blank">Nerf blaster</a></br>
+1x <a target="__blank">Nerf Vulcan Blaster with Lazer Attachment</a></br>
 5x <a target="__blank">180 degree Hinge</a></br>
 2x <a target="__blank">90 degree brace</a></br>
 1x <a target="__blank">Memory Foam</a></br>
-1x <a target="__blank">Power Bank</a></br>
 1x <a target="__blank">Amazon Echo/Dot</a></br>
-2x <a target="__blank">Mounting Triangles </a></br>
+4x <a target="__blank">Mounting Triangles </a></br>
 <b>Wood:</b> </br>
 1/4th inch wood</br>
 1/2 inch wood</br>
@@ -52,7 +48,7 @@ Screws: </br>
 1x <a target="__blank">Rolling Flange</a></br>
 4x <a target="__blank">Dampener</a></br>
 1x <a target="__blank">Gimbal Endspot Guide</a></br>
-5x <a target="__blank">Wire Guide</a></br>
+5-10x <a target="__blank">Wire Guide</a></br>
 1x <a target="__blank">Raspberry Pi 3 Container</a></br>
 Optional: Spraypaint </br>
 
@@ -76,22 +72,38 @@ sudo python 3 -m pip install git+https://github.com/adafruit/Adafruit-Motor-HAT-
 Setup I2C on your Raspberry Pi: </br>
 https://learn.adafruit.com/adafruits-raspberry-pi-lesson-4-gpio-setup/configuring-i2c
 </br>
+Install OpenCV 3. Follow all steps for python 2.7 instructions
+
+http://www.pyimagesearch.com/2016/04/18/install-guide-raspberry-pi-3-raspbian-jessie-opencv-3/
+
+Make sure to create your virtual environment with the extra flag.
+
+```bash
+mkvirtualenv cv --system-site-packages -p python2
+```
+
+Source your bash profile
+
+```bash
+source ~/.profile
+```
+
+Activate your virtual environment
+
+```
+workon cv
+```
 
 Now you are ready to clone the repo on the Raspberry Pi </br>
 ```bash
 cd ~
 git clone https://github.com/QuodCertamine/Project-Icarus
 ```
-*** TODO: OpenCV Install instructions *** </br>
 
 Then follow the following instructions to take the icarus.service file and enable it with systemd </br>
 https://www.raspberrypi-spy.co.uk/2015/10/how-to-autorun-a-python-script-on-boot-using-systemd/
 </br>
 
-```bash
-source ~/.profile
-workon cv
-```
 
 After setting up the service file your Raspberry Pi should automatically start Project Icarus on boot.
 
