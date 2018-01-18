@@ -1,7 +1,11 @@
 # Project Icarus
-Home Defense System using Alexa enabled triggers, OpenCV camera locking, and a really cool nerf gun.</br>
+Home Defense System using Alexa enabled triggers, OpenCV target finding, and a really cool nerf gun.</br>
 Click the image below to watch the video. </br>
 [![Watch the video](https://github.com/QuodCertamine/Project-Icarus/blob/master/img/youtube.png)](https://youtu.be/fzvNv4QeY4A)
+
+## HUGE SHOUTOUT
+<b>Huge shoutout</b> to my fellow hackers over at <a href="https://github.com/HackerHouseYT/Tracking-Turret">HackerHouse</a> for putting together this original project with an airsoft and giving me the idea to grow on it.
+</br>
 
 Table of Contents
 ============
@@ -54,10 +58,21 @@ Optional: Spraypaint </br>
 
 Hardware build
 ============
-*** TODO: Hardware Instructions *** </br>
+There are three main parts to the hardware build. The Box, the Gimbal, and turrent modifications. The gimbal was originally designed by the hackers over at HackerHouse, however the box and turrent modifications are original designs </br>
+## The Box
+*** TODO: Box dimensions Instructions ***
 
-</br>
-Power the Raspberry Pi with any 5V supply and power the Motor Hat either using a 12V supply or a 5V supply and the 5-12V Buck Boost Converter. Now you are ready to install the necessary software
+## The Gimbal
+A great resource to follow for the gimbal hardware build is the instructional video provided by <a href="https://www.youtube.com/watch?v=HoRPWUl_sF8">HackerHouse</a>. Some important adjustments have to be made from their build though: </br>
+<li>Circular Platform should have a 16" diameter</li>
+<li>Use Nema 17 5:1 Stepper Motors</li>
+<li>The Vertical Stands should be 8" tall (MINIMUM)</li>
+<li>We are using a Nerf Vulcan for this build</li>
+
+## Turrent Modifications
+*** TODO: Turrent Modification Instructions ***
+Finally, power the Raspberry Pi with any 5V supply and power the Motor Hat either using a 12V supply or a 5V supply and the 5-12V Buck Boost Converter. Now you are ready to install the necessary software
+
 
 Software install
 ============
@@ -104,7 +119,6 @@ Then follow the following instructions to take the icarus.service file and enabl
 https://www.raspberrypi-spy.co.uk/2015/10/how-to-autorun-a-python-script-on-boot-using-systemd/
 </br>
 
-
 After setting up the service file your Raspberry Pi should automatically start Project Icarus on boot.
 
 Alexa Integration
@@ -135,6 +149,7 @@ https://developer.amazon.com/alexa-skills-kit/alexa-skill-quick-start-tutorial <
 Load the .zip file into your lambda service </br>
 
 Add the following command configurations to your Alexa skill in the Alexa skill developer portal </br>
+
 ## Different Alexa Commands Supported:
 "Alexa launch Project Icarus" </br>
 "Clean up" </br>
@@ -143,14 +158,16 @@ Add the following command configurations to your Alexa skill in the Alexa skill 
 
 Running
 ============
+Start the controller interface, which is basically a while loop that runs the finite state machine and deals with the firebase reads.
+
 ```bash
 python3 icarus_controller_interface.py
 ```
+
 Model
 ============
-*** TODO: include 3D Model *** </br>
-![3DModel](https://github.com/QuodCertamine/Project-Icarus/blob/master/models/3DModel.png)
-
+![3DModel-1](https://github.com/QuodCertamine/Project-Icarus/blob/master/models/fullimage-1.png)
+![3DModel-2](https://github.com/QuodCertamine/Project-Icarus/blob/master/models/fullimage-2.png)
 License
 ============
 The MIT License
