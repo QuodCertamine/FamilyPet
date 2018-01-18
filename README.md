@@ -6,6 +6,7 @@ Click the image below to watch the video. </br>
 ## HUGE SHOUTOUT
 <b>Huge shoutout</b> to my fellow hackers over at <a href="https://github.com/HackerHouseYT/Tracking-Turret">HackerHouse</a> for putting together this original project with an airsoft and giving me the idea to grow on it.
 </br>
+<img src="https://cdn.instructables.com/F6V/NW4E/IW6PF2TR/F6VNW4EIW6PF2TR.MEDIUM.jpg"/> </br>
 
 Table of Contents
 ============
@@ -20,33 +21,35 @@ Table of Contents
 
 Instructions
 ============
-*** TODO: Intro instructions *** </br>
+These instructions are broken up into multiple sections in order to talk about the hardware build for the Box, The Gimbal, and necessary turrent motifications.
 
 Necessary Hardware
 ============
-*** TODO: Links for all the hardware *** </br>
+
 1x <a href="https://www.adafruit.com/product/3055" target="__blank">Raspberry Pi 3</a></br>
 1x <a href="https://www.amazon.com/gp/product/B00TIY5JM8/ref=oh_aui_detailpage_o08_s00?ie=UTF8&psc=1" target="__blank">Adafruit Motor Hat for Raspberry Pi</a></br>
-2x <a target="__blank">Nema 17 Stepper Motor 5:1</a></br>
-4x <a target="__blank">5-8" expansion Springs</a></br>
-1x <a target="__blank">Roll of Nylon String</a></br>
-4x <a target="__blank">Eye Hook</a></br>
-2x <a target="__blank">Relay</a></br>
-1x <a target="__blank">720p Camera</a></br>
-1x <a target="__blank">MG890 Servo</a></br>
-1x <a target="__blank">Lock</a></br>
-1x <a target="__blank">Nerf Vulcan Blaster with Lazer Attachment</a></br>
-5x <a target="__blank">180 degree Hinge</a></br>
-2x <a target="__blank">90 degree brace</a></br>
-1x <a target="__blank">Memory Foam</a></br>
-1x <a target="__blank">Amazon Echo/Dot</a></br>
-4x <a target="__blank">Mounting Triangles </a></br>
+2x <a href="https://www.amazon.com/gp/product/B00WATUFIG/ref=oh_aui_detailpage_o09_s02?ie=UTF8&psc=1" target="__blank">Nema 17 Stepper Motor 5:1</a></br>
+4x <a href="https://www.grainger.com/category/extension-springs/springs/hardware/ecatalog/N-mgb" target="__blank">4-6" extension Springs</a></br> 
+1x <a href="https://www.homedepot.com/p/Bon-Tool-350-ft-Yellow-Twisted-Nylon-Line-15-11-132/302556746" target="__blank">Roll of Nylon String</a></br>
+4x <a href="https://www.homedepot.com/p/Everbilt-212-x-65-lb-Zinc-Plated-Threaded-Eye-Hook-100-Pack-803252/204273857" target="__blank">Eye Hook</a></br>
+2x <a href="https://www.amazon.com/WINGONEER-KY-019-Channel-Module-arduino/dp/B06XHJ2PBJ/ref=sr_1_3?ie=UTF8&qid=1516285179&sr=8-3&keywords=5v+relay+arduino" target="__blank">5V Relay</a></br>
+1x <a href="https://www.amazon.com/gp/product/B01DRJXAWA/ref=oh_aui_detailpage_o04_s00?ie=UTF8&psc=1" target="__blank">720p Camera</a></br>
+1x <a href="https://www.amazon.com/MG995-Metal-Speed-Torque-Digital/dp/B01N4QD32E/ref=sr_1_5?s=toys-and-games&ie=UTF8&qid=1516285488&sr=1-5&keywords=servo" target="__blank">MG995 Servo</a></br>
+1x <a href="https://www.homedepot.com/p/Ajustlock-3-in-Zinc-Plated-Self-Adjustable-Barrel-Bolt-Lock-205/206495640" target="__blank">Barrel Bolt Lock</a></br>
+1x <a href="" target="__blank">Nerf Vulcan Blaster with Lazer Attachment</a></br>
+5x <a href="https://www.homedepot.com/p/Everbilt-1-in-Zinc-Plated-Non-Removable-Pin-Narrow-Utility-Hinges-2-Pack-15161/202034166" target="__blank">360 degree Hinge</a></br>
+2x <a href="" target="__blank">90 degree bracket</a></br>
+1x <a href="" target="__blank">Memory Foam</a></br>
+1x <a href="https://www.amazon.com/dp/B01DFKC2SO/ref=ods_gw_ha_bt_tpr_prime_im2?pf_rd_p=483723cc-7ecc-4053-9fa9-b9981d4521c3&pf_rd_r=2X36D6VF71ZDNDG4ECHE" target="__blank">Amazon Echo/Dot</a></br>
+4x <a href="" target="__blank">Mounting Triangles </a></br>
+1x <a href="
+https://www.amazon.com/gp/product/B01CYIFO8I/ref=oh_aui_detailpage_o06_s00?ie=UTF8&psc=1" target="__blank">12V 3A Power adapter </a></br>
 <b>Wood:</b> </br>
 1/4th inch wood</br>
 1/2 inch wood</br>
 Various Screws: </br>
+Wood glue </br>
 *** TODO: Length of Screws *** </br>
-*** TODO: Wood Thicc-ness *** </br>
 
 <b>3D Printable files:</b> </br>
 2x <a target="__blank">Stepper Motor Flang</a></br>
