@@ -21,7 +21,7 @@ Table of Contents
 
 Instructions
 ============
-These instructions are broken up into multiple sections in order to talk about the hardware build for the Box, The Gimbal, and necessary turrent motifications.
+These instructions are broken up into multiple sections in order to talk about the hardware build for the Box, The Gimbal, and necessary turrent motifications. 
 
 Necessary Hardware
 ============
@@ -36,10 +36,10 @@ Necessary Hardware
 1x <a href="https://www.amazon.com/gp/product/B01DRJXAWA/ref=oh_aui_detailpage_o04_s00?ie=UTF8&psc=1" target="__blank">720p Camera</a></br>
 1x <a href="https://www.amazon.com/MG995-Metal-Speed-Torque-Digital/dp/B01N4QD32E/ref=sr_1_5?s=toys-and-games&ie=UTF8&qid=1516285488&sr=1-5&keywords=servo" target="__blank">MG995 Servo</a></br>
 1x <a href="https://www.homedepot.com/p/Ajustlock-3-in-Zinc-Plated-Self-Adjustable-Barrel-Bolt-Lock-205/206495640" target="__blank">Barrel Bolt Lock</a></br>
-1x <a href="" target="__blank">Nerf Vulcan Blaster with Lazer Attachment</a></br>
+1x <a href="https://www.ebay.com/b/Nerf-Vulcan-EBF-25/158749/bn_55191273" target="__blank">Nerf Vulcan Blaster with Lazer Attachment</a></br>
 5x <a href="https://www.homedepot.com/p/Everbilt-1-in-Zinc-Plated-Non-Removable-Pin-Narrow-Utility-Hinges-2-Pack-15161/202034166" target="__blank">360 degree Hinge</a></br>
 2x <a href="" target="__blank">90 degree bracket</a></br>
-1x <a href="" target="__blank">Memory Foam</a></br>
+<a href="" target="__blank">Memory Foam</a></br>
 1x <a href="https://www.amazon.com/dp/B01DFKC2SO/ref=ods_gw_ha_bt_tpr_prime_im2?pf_rd_p=483723cc-7ecc-4053-9fa9-b9981d4521c3&pf_rd_r=2X36D6VF71ZDNDG4ECHE" target="__blank">Amazon Echo/Dot</a></br>
 4x <a href="" target="__blank">Mounting Triangles </a></br>
 1x <a href="
@@ -64,11 +64,14 @@ Optional: Spraypaint </br>
 Hardware build
 ============
 There are three main parts to the hardware build. The Box, the Gimbal, and turrent modifications. The gimbal was originally designed by the hackers over at HackerHouse, however the box and turrent modifications are original designs </br>
+
 ## The Box
 *** TODO: Box dimensions Instructions *** </br>
 *** TODO: Hinge placement Instructions *** </br>
 *** TODO: Servo Mounting Instructions*** </br>
 *** TODO: Guide Hole Placement Instructions*** </br>
+*** TODO: Springs Springs Springs Instructions*** </br>
+*** TODO: Memory Foam Instructions*** </br>
 
 ## The Gimbal
 A great resource to follow for the gimbal hardware build is the instructional video provided by <a href="https://www.youtube.com/watch?v=HoRPWUl_sF8">HackerHouse</a>. Some important adjustments have to be made from their build though: </br>
@@ -76,8 +79,12 @@ A great resource to follow for the gimbal hardware build is the instructional vi
 <li>Use Nema 17 5:1 Stepper Motors</li>
 <li>The Vertical Stands should be 8" tall (MINIMUM)</li>
 <li>We are using a Nerf Vulcan for this build</li>
+<li>Dampeners because of movement</li> *** TODO: Add image of dampener placement**
+<li>More brackets for support</li>  *** TODO: Add image of brackets*** </br>
 
 *** TODO: Sweep Leg Guide mounting Instructions*** </br>
+*** TODO: Mounting Gimbal on the box*** </br>
+*** TODO: Wire Guide instructions*** </br>
 
 ## Turrent Modifications
 *** TODO: Turrent Modification Instructions *** </br>
