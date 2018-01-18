@@ -40,7 +40,7 @@ Necessary Hardware
 <b>Wood:</b> </br>
 1/4th inch wood</br>
 1/2 inch wood</br>
-Screws: </br>
+Various Screws: </br>
 *** TODO: Length of Screws *** </br>
 
 <b>3D Printable files:</b> </br>
