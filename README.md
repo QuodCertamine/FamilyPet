@@ -47,17 +47,18 @@ https://www.amazon.com/gp/product/B01CYIFO8I/ref=oh_aui_detailpage_o06_s00?ie=UT
 <b>Wood:</b> </br>
 1/4th inch wood</br>
 1/2 inch wood</br>
-Various Screws: </br>
 Wood glue </br>
+Various Screws: </br>
 *** TODO: Length of Screws *** </br>
 
 <b>3D Printable files:</b> </br>
-2x <a target="__blank">Stepper Motor Flang</a></br>
-1x <a target="__blank">Rolling Flange</a></br>
-4x <a target="__blank">Dampener</a></br>
-1x <a target="__blank">Gimbal Endspot Guide</a></br>
-5-10x <a target="__blank">Wire Guide</a></br>
-1x <a target="__blank">Raspberry Pi 3 Container</a></br>
+2x <a href="https://github.com/QuodCertamine/Project-Icarus/blob/Atom/models/flanged_collar.stl" target="__blank">Stepper Motor Flang</a></br>
+1x <a href="https://github.com/QuodCertamine/Project-Icarus/blob/Atom/models/flanged_shaft.stl" target="__blank">Flange Shaft</a></br>
+4x <a href="https://github.com/QuodCertamine/Project-Icarus/blob/Atom/models/dampener.stl" target="__blank">Dampener</a></br>
+1x <a href="https://github.com/QuodCertamine/Project-Icarus/blob/Atom/models/sweepleg.stl" target="__blank">Gimbal Endstop Guide</a></br>
+1x <a href="https://github.com/QuodCertamine/Project-Icarus/blob/Atom/models/sweepleg-block.stl" target="__blank">Gimbal Endstop</a>
+5-10x <a href="https://github.com/QuodCertamine/Project-Icarus/blob/Atom/models/wire-guide.stl" target="__blank">Wire Guide</a></br>
+1x <a href="https://www.thingiverse.com/thing:922740"  target="__blank">Raspberry Pi 3 Container</a></br>
 Optional: Spraypaint </br>
 
 Hardware build
@@ -65,6 +66,9 @@ Hardware build
 There are three main parts to the hardware build. The Box, the Gimbal, and turrent modifications. The gimbal was originally designed by the hackers over at HackerHouse, however the box and turrent modifications are original designs </br>
 ## The Box
 *** TODO: Box dimensions Instructions *** </br>
+*** TODO: Hinge placement Instructions *** </br>
+*** TODO: Servo Mounting Instructions*** </br>
+*** TODO: Guide Hole Placement Instructions*** </br>
 
 ## The Gimbal
 A great resource to follow for the gimbal hardware build is the instructional video provided by <a href="https://www.youtube.com/watch?v=HoRPWUl_sF8">HackerHouse</a>. Some important adjustments have to be made from their build though: </br>
@@ -73,9 +77,11 @@ A great resource to follow for the gimbal hardware build is the instructional vi
 <li>The Vertical Stands should be 8" tall (MINIMUM)</li>
 <li>We are using a Nerf Vulcan for this build</li>
 
+*** TODO: Sweep Leg Guide mounting Instructions*** </br>
+
 ## Turrent Modifications
 *** TODO: Turrent Modification Instructions *** </br>
-Finally, power the Raspberry Pi with any 5V supply and power the Motor Hat either using a 12V supply or a 5V supply and the 5-12V Buck Boost Converter. Now you are ready to install the necessary software
+Finally, power the Raspberry Pi with any 5V supply and power the Motor Hat either using a 12V 3A power supply or a 5V supply and the 5-12V Buck Boost Converter. Now you are ready to install the necessary software
 
 
 Software install
@@ -83,9 +89,9 @@ Software install
 To get the Raspberry Pi up and running we need to install the necessary libraries
 
 ```bash
-python3 -m pip install python-firebase
-python3 -m pip install requests
-sudo python 3 -m pip install git+https://github.com/adafruit/Adafruit-Motor-HAT-Python-Library
+pip install python-firebase
+pip install requests
+sudo pip install git+https://github.com/adafruit/Adafruit-Motor-HAT-Python-Library
 ```
 
 Setup I2C on your Raspberry Pi: </br>
@@ -108,7 +114,6 @@ source ~/.profile
 ```
 
 Activate your virtual environment
-
 ```
 workon cv
 ```
@@ -156,7 +161,10 @@ Add the following command configurations to your Alexa skill in the Alexa skill 
 
 ## Different Alexa Commands Supported:
 "Alexa launch Project Icarus" </br>
-"Clean up" </br>
+"Activate defense protocol alpha" </br>
+"Activate security" </br>
+"Protect me" </br>
+"Activate defense protocol beta" </br>
 "Lock" </br>
 "Stop" </br>
 
@@ -170,8 +178,10 @@ python3 icarus_controller_interface.py
 
 Model
 ============
-![3DModel-1](https://github.com/QuodCertamine/Project-Icarus/blob/master/models/fullimage-1.png)
-![3DModel-2](https://github.com/QuodCertamine/Project-Icarus/blob/master/models/fullimage-2.png) </br>
+![3DModel-1](https://github.com/QuodCertamine/Project-Icarus/blob/Atom/models/fullimage-1.png)
+
+![3DModel-2](https://github.com/QuodCertamine/Project-Icarus/blob/Atom/models/fullimage-2.png) </br>
+
 License
 ============
 The MIT License
