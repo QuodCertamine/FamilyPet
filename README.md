@@ -46,6 +46,7 @@ Necessary Hardware
 1/2 inch wood</br>
 Various Screws: </br>
 *** TODO: Length of Screws *** </br>
+*** TODO: Wood Thicc-ness *** </br>
 
 <b>3D Printable files:</b> </br>
 2x <a target="__blank">Stepper Motor Flang</a></br>
@@ -60,7 +61,7 @@ Hardware build
 ============
 There are three main parts to the hardware build. The Box, the Gimbal, and turrent modifications. The gimbal was originally designed by the hackers over at HackerHouse, however the box and turrent modifications are original designs </br>
 ## The Box
-*** TODO: Box dimensions Instructions ***
+*** TODO: Box dimensions Instructions *** </br>
 
 ## The Gimbal
 A great resource to follow for the gimbal hardware build is the instructional video provided by <a href="https://www.youtube.com/watch?v=HoRPWUl_sF8">HackerHouse</a>. Some important adjustments have to be made from their build though: </br>
@@ -70,7 +71,7 @@ A great resource to follow for the gimbal hardware build is the instructional vi
 <li>We are using a Nerf Vulcan for this build</li>
 
 ## Turrent Modifications
-*** TODO: Turrent Modification Instructions ***
+*** TODO: Turrent Modification Instructions *** </br>
 Finally, power the Raspberry Pi with any 5V supply and power the Motor Hat either using a 12V supply or a 5V supply and the 5-12V Buck Boost Converter. Now you are ready to install the necessary software
 
 
@@ -167,7 +168,7 @@ python3 icarus_controller_interface.py
 Model
 ============
 ![3DModel-1](https://github.com/QuodCertamine/Project-Icarus/blob/master/models/fullimage-1.png)
-![3DModel-2](https://github.com/QuodCertamine/Project-Icarus/blob/master/models/fullimage-2.png)
+![3DModel-2](https://github.com/QuodCertamine/Project-Icarus/blob/master/models/fullimage-2.png) </br>
 License
 ============
 The MIT License
