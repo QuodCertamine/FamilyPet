@@ -2,6 +2,7 @@ import icarus_command_interface as icmdi
 import datetime
 from firebase import firebase
 from random import *
+import json
 
 """ 
 The State machine takes inputs and outputs to necessary state depending
@@ -9,7 +10,10 @@ on the inputs
 """
 
 def resetStatus(status):
-    fb = firebase.FirebaseApplication("https://proj-icarus.firebaseio.com", None)
+    with open('config.json', 'r') as f:
+        config = json.load(f)
+    authentication = firebase.FirebaseAuthentication(config["secret"], config["email"], True, True)
+    fb = firebase.FirebaseApplication("https://proj-icarus.firebaseio.com", authentication)
     data = {'command':status}
     result = fb.patch("/status", data)
 
