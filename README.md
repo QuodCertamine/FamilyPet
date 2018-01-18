@@ -56,7 +56,7 @@ Various Screws: </br>
 1x <a href="https://github.com/QuodCertamine/Project-Icarus/blob/Atom/models/flanged_shaft.stl" target="__blank">Flange Shaft</a></br>
 4x <a href="https://github.com/QuodCertamine/Project-Icarus/blob/Atom/models/dampener.stl" target="__blank">Dampener</a></br>
 1x <a href="https://github.com/QuodCertamine/Project-Icarus/blob/Atom/models/sweepleg.stl" target="__blank">Gimbal Endstop Guide</a></br>
-1x <a href="https://github.com/QuodCertamine/Project-Icarus/blob/Atom/models/sweepleg-block.stl" target="__blank">Gimbal Endstop</a>
+1x <a href="https://github.com/QuodCertamine/Project-Icarus/blob/Atom/models/sweepleg-block.stl" target="__blank">Gimbal Endstop</a> </br>
 5-10x <a href="https://github.com/QuodCertamine/Project-Icarus/blob/Atom/models/wire-guide.stl" target="__blank">Wire Guide</a></br>
 1x <a href="https://www.thingiverse.com/thing:922740"  target="__blank">Raspberry Pi 3 Container</a></br>
 Optional: Spraypaint </br>
