@@ -1,6 +1,8 @@
 'use strict';
 var Alexa = require('alexa-sdk');
-var firebase = require('firebase');
+//var firebase = require('firebase');
+var admin = require('firebase-admin');
+var serviceAccount = require('./serviceAccountKey.json');
 const APP_ID = "amzn1.ask.skill.10bae565-71f1-4d06-ba85-1c531e6a07f4";  // Your app ID.
 var slotType = '';
 var nameValue = '';
@@ -60,7 +62,7 @@ function getWelcomeResponse(callback) {
         buildSpeechletResponse(cardTitle, speechOutput, repromptText, shouldEndSession));
 }
 
-function lock(callback, database) {
+function lock(callback, db) {
     const cardTitle = 'lock';
     let repromptText = 'Resetting the lock';
     let sessionAttributes = {};
@@ -69,7 +71,7 @@ function lock(callback, database) {
 
     var today = new Date();
     let time = today.toLocaleString();
-    database.ref("status/").update({
+    db.ref("status/").update({
         command: 'lock',
         timestamp: time
     },() => { 
@@ -78,7 +80,7 @@ function lock(callback, database) {
     });
 }
 
-function goHome(callback, database) {
+function goHome(callback, db) {
     const cardTitle = 'Going Home';
     let repromptText = 'Disarmed and Returning to Home state';
     let sessionAttributes = {};
@@ -87,7 +89,7 @@ function goHome(callback, database) {
 
     var today = new Date();
     let time = today.toLocaleString();
-    database.ref("status/").update({
+    db.ref("status/").update({
         command: 'goHome',
         timestamp: time
     },() => { 
@@ -96,7 +98,7 @@ function goHome(callback, database) {
     });
 }
 
-function cleanUp(callback, database) {
+function cleanUp(callback, db) {
     const cardTitle = 'Stop';
     let repromptText = 'Beginning the purge... ' +
     'May god help us all';
@@ -104,9 +106,10 @@ function cleanUp(callback, database) {
     const shouldEndSession = false;
     let speechOutput = 'Beginning the purge... ' +
     'May god help us all';
+
     var today = new Date();
     let time = today.toLocaleString();
-    database.ref("status/").update({
+    db.ref("status/").update({
         command: 'cleanUp',
         timestamp: time
     },() => { 
@@ -115,7 +118,7 @@ function cleanUp(callback, database) {
     });
 }
 
-function stop(callback, database) {
+function stop(callback, db) {
     const cardTitle = 'Stop';
     let repromptText = 'Haulting';
     let sessionAttributes = {};
@@ -124,7 +127,7 @@ function stop(callback, database) {
 
     var today = new Date();
     let time = today.toLocaleString();
-    database.ref("status/").update({
+    db.ref("status/").update({
         command: 'stop',
         timestamp: time
     },() => { 
@@ -164,7 +167,7 @@ function onLaunch(launchRequest, session, callback) {
 /**
  * Called when the user specifies an intent for this skill.
  */
-function onIntent(intentRequest, session, database, callback) {
+function onIntent(intentRequest, session, db, callback) {
     console.log(`onIntent requestId=${intentRequest.requestId}, sessionId=${session.sessionId}`);
 
     const intent = intentRequest.intent;
@@ -174,13 +177,13 @@ function onIntent(intentRequest, session, database, callback) {
     if (intentName === 'AMAZON.HelpIntent') {
         getWelcomeResponse(callback);
     } else if (intentName === 'Lock') {
-        lock(callback, database);
+        lock(callback, db);
     } else if (intentName === 'GoHome') {
-        goHome(callback, database);
+        goHome(callback, db);
     } else if (intentName === 'CleanUp') {
-        cleanUp(callback, database);
+        cleanUp(callback, db);
     } else if (intentName === 'Stop') {
-        stop(callback, database);
+        stop(callback, db);
     } else if (intentName === 'AMAZON.StopIntent' || intentName === 'AMAZON.CancelIntent') {
         handleSessionEndRequest(callback);
     } else {
@@ -206,12 +209,23 @@ exports.handler = (event, context, callback) => {
         console.log(`event.session.application.applicationId=${event.session.application.applicationId}`);
 
         context.callbackWaitsForEmptyEventLoop = false;  //<---Important
-        var config = require('./config.json');     
+        // var config = require('./config.json');     
 
-        if(firebase.apps.length == 0) {   // <---Important!!! In lambda, it will cause double initialization.
-            firebase.initializeApp(config);
+        // if(firebase.apps.length == 0) {   // <---Important!!! In lambda, it will cause double initialization.
+        //      firebase.initializeApp(config);
+        // }
+
+
+        if(admin.apps.length == 0) {
+            admin.initializeApp({
+                credential: admin.credential.cert(serviceAccount),
+                databaseURL: "https://proj-icarus.firebaseio.com"
+            });
         }
-        var database = firebase.database();
+
+        //var db = firebase.database();
+        var da = admin.auth();
+        var db = admin.database();
         if (event.session.new) {
             onSessionStarted({ requestId: event.request.requestId }, event.session);
         }
@@ -224,7 +238,7 @@ exports.handler = (event, context, callback) => {
                 });
         } else if (event.request.type === 'IntentRequest') {
             onIntent(event.request,
-                event.session, database,
+                event.session, db,
                 (sessionAttributes, speechletResponse) => {
                     callback(null, buildResponse(sessionAttributes, speechletResponse));
                 });

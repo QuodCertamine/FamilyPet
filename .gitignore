@@ -3,3 +3,5 @@ config.json
 __pycache__
 .vscode
 *.zip
+serviceAccountKey.json
+node_modules/

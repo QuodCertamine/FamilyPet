@@ -145,19 +145,8 @@ cd alexa-icarus
 npm install
 ```
 
-Go to firebase and set up a firebase application. Get config data from firebase and save it as config.json </br>
-
-```bash 
-config = {
-    apiKey: "{api-key}",
-    authDomain: "{app-id}.firebaseapp.com",
-    databaseURL: "https://{app-id}.firebaseio.com",
-    projectId: "{app-id}",
-    storageBucket: "{app-id}.appspot.com",
-    messagingSenderId: ""
-  }
-```
-
+Go to firebase and set up a firebase application. Follow <a href="https://firebase.google.com/docs/admin/setup" target="__blank">these instructions</a> to obtain your firebase-admin service account key
+save the downloaded file to serviceAccountKey.json in the alexa-icarus folder of this project </br>
 Save all items in the folder as a .zip file.
 
 Follow the following instructions from Amazon to set up your own Lambda service and nodejs skill:</br>
@@ -166,6 +155,14 @@ Load the .zip file into your lambda service </br>
 
 Add the following command configurations to your Alexa skill in the Alexa skill developer portal </br>
 
+You also have to create a config.json file for the python authentication of firebase </br>
+config.json </br>
+```bash 
+{
+    secret: "",
+    email: "email@gmail.com"
+}
+```
 ## Different Alexa Commands Supported:
 "Alexa launch Project Icarus" </br>
 "Activate defense protocol alpha" </br>
