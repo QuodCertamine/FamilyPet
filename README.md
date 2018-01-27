@@ -145,8 +145,8 @@ cd alexa-icarus
 npm install
 ```
 
-Go to firebase and set up a firebase application. Follow <a href="https://firebase.google.com/docs/admin/setup" target="__blank">these instructions</a> to obtain your firebase-admin service account key
-save the downloaded file to serviceAccountKey.json in the alexa-icarus folder of this project </br>
+Go to firebase and set up a firebase application. Follow <a href="https://firebase.google.com/docs/admin/setup" target="__blank">these instructions</a> to obtain your firebase-admin service account key </br>
+Save the downloaded file to serviceAccountKey.json in the alexa-icarus folder of this project </br>
 Save all items in the folder as a .zip file.
 
 Follow the following instructions from Amazon to set up your own Lambda service and nodejs skill:</br>

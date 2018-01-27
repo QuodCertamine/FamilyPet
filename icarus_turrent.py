@@ -3,7 +3,7 @@ try:
 except Exception as e:
     print("Warning: OpenCV not installed. To use motion detection, make sure you've properly configured OpenCV.")
 
-import time;
+import time
 import thread
 import threading
 import atexit
@@ -375,8 +375,8 @@ if __name__ == "__main__":
         t.interactive()
     elif user_input == "3":
         t.calibrate()
-        t.motion_detection()
-        #t.motion_detection(show_video=True)
+        #t.motion_detection()
+        t.motion_detection(show_video=True)
         t.home()
     else:
         print "Unknown input mode. Please choose a number (1) or (2) or (3)"
