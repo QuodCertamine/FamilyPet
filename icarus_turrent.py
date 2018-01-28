@@ -110,6 +110,7 @@ class VideoUtils(object):
                 else:
                     delta = cv2.absdiff(tempFrame, gray)
                     tempFrame = gray
+                    count2 = 0
                     tst = cv2.threshold(delta, 5, 255, cv2.THRESH_BINARY)[1]
                     tst = cv2.dilate(tst, None, iterations=2)
                     if count > 30:
@@ -117,6 +118,7 @@ class VideoUtils(object):
                         if not cv2.countNonZero(tst) > 0:
                             firstFrame = gray
                         else:
+                            count2 += 1
                             continue
                     else:
                         count += 1

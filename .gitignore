@@ -5,3 +5,5 @@ __pycache__
 *.zip
 serviceAccountKey.json
 node_modules/
+!.pyc
+*.pyc
