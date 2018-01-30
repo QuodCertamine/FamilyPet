@@ -269,7 +269,7 @@ class Turret(object):
         Turret.move_forward(self.sm_x, 1)
         time.sleep(1)
         Turret.move_forward(self.sm_y, 40)
-        Turret.move_backward(self.sm_x, 900)
+        Turret.move_backward(self.sm_x, 600)
 
     def home(self):
         """
@@ -277,7 +277,7 @@ class Turret(object):
         :return:
         """
 
-        Turret.move_forward(self.sm_x, 1000)
+        Turret.move_forward(self.sm_x, 800)
           
     def interactive(self):
         """
