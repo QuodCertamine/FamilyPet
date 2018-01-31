@@ -103,7 +103,6 @@ class VideoUtils(object):
 
             # if the first frame is None, initialize it
             if firstFrame is None:
-                print "Waiting for video to adjust..."
                 if tempFrame is None:
                     tempFrame = gray
                     continue
@@ -114,11 +113,11 @@ class VideoUtils(object):
                     tst = cv2.threshold(delta, 5, 255, cv2.THRESH_BINARY)[1]
                     tst = cv2.dilate(tst, None, iterations=2)
                     if count > 30:
-                        print "Done.\n Waiting for motion."
+                        print count2
                         if not cv2.countNonZero(tst) > 0:
                             firstFrame = gray
-                        else:
                             count2 += 1
+                        else:
                             continue
                     else:
                         count += 1
@@ -189,12 +188,25 @@ class Turret(object):
         self.sm_y.setSpeed(5)
         self.current_y_steps = 0
 
-        # Relay
+    def setGPIO(self):
+        # Relay and lock setup
         GPIO.setmode(GPIO.BCM)
+        GPIO.setup(18, GPIO.OUT)
+        self._pwm = GPIO.PWM(18,100)
+        self._pwm.start(14)
         GPIO.setup(FIRE_PIN, GPIO.OUT)
         GPIO.output(FIRE_PIN, GPIO.LOW)
         GPIO.setup(LASER_PIN, GPIO.OUT)
         GPIO.output(LASER_PIN, GPIO.LOW)
+
+    def destroyGPIO(self):
+        GPIO.cleanup()
+
+    def openLock(self):
+        self._pwm.ChangeDutyCycle(22)
+
+    def closeLock(self):
+        self._pwm.ChangeDutyCycle(14)
 
     def motion_detection(self, show_video=False):
         """
@@ -268,8 +280,8 @@ class Turret(object):
         Turret.move_forward(self.sm_y, 1)
         Turret.move_forward(self.sm_x, 1)
         time.sleep(1)
-        Turret.move_forward(self.sm_y, 40)
-        Turret.move_backward(self.sm_x, 600)
+        Turret.move_forward(self.sm_y, 20)
+        Turret.move_backward(self.sm_x, 525)
 
     def home(self):
         """
@@ -277,7 +289,7 @@ class Turret(object):
         :return:
         """
 
-        Turret.move_forward(self.sm_x, 800)
+        Turret.move_forward(self.sm_x, 650)
           
     def interactive(self):
         """
@@ -359,18 +371,20 @@ class Turret(object):
         self.mh.getMotor(2).run(Adafruit_MotorHAT.RELEASE)
         self.mh.getMotor(3).run(Adafruit_MotorHAT.RELEASE)
         self.mh.getMotor(4).run(Adafruit_MotorHAT.RELEASE)
-        GPIO.output(LASER_PIN, GPIO.LOW)
 
 if __name__ == "__main__":
     t = Turret(friendly_mode=True)
+    t.setGPIO()
 
     user_input = raw_input("Choose an input mode: (1) Motion Detection, (2) Interactive (3) Custom\n")
 
     if user_input == "1":
         if raw_input("Live video? (y, n)\n").lower() == "y":
             t.motion_detection(show_video=True)
+            t.destroyGPIO()
         else:
             t.motion_detection()
+            t.destroyGPIO()
     elif user_input == "2":
         if raw_input("Live video? (y, n)\n").lower() == "y":
             thread.start_new_thread(VideoUtils.live_video, ())
@@ -380,5 +394,6 @@ if __name__ == "__main__":
         #t.motion_detection()
         t.motion_detection(show_video=True)
         t.home()
+        t.destroyGPIO()
     else:
         print "Unknown input mode. Please choose a number (1) or (2) or (3)"
