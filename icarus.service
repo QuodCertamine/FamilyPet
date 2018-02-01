@@ -7,7 +7,7 @@ After=network.target network-online.target
 WorkingDirectory=/home/pi/Project-Icarus/
 Type=idle
 User=pi
-ExecStart=source /home/pi/Project-Icarus/projecticarus.sh > /home/pi/Desktop/icarus.log 2>&1
+ExecStart=/home/pi/Project-Icarus/projecticarus.sh > /home/pi/Desktop/icarus.log 2>&1
 
 [Install]
 WantedBy=multi-user.target
