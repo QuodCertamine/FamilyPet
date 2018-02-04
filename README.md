@@ -1,7 +1,7 @@
 # Project Icarus
 Home Defense System using Alexa enabled triggers, OpenCV target finding, and a really cool nerf gun.</br>
 Click the image below to watch the video. </br>
-[![Watch the video](https://github.com/QuodCertamine/Project-Icarus/blob/master/img/youtube.png)](https://youtu.be/fzvNv4QeY4A)
+[![Watch the video](https://github.com/QuodCertamine/Project-Icarus/blob/Atom/img/youtube.png)](https://www.youtube.com/watch?v=nAbe4CN_NfY&list=PLm2pid0RY5dEpCS_2eUWyErOQre9ZqB6Z)
 
 ## HUGE SHOUTOUT
 <b>Huge shoutout</b> to my fellow hackers over at <a href="https://github.com/HackerHouseYT/Tracking-Turret">HackerHouse</a> for putting together this original project with an airsoft and giving me the idea to grow on it.
