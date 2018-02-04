@@ -21,7 +21,7 @@ Table of Contents
 
 Instructions
 ============
-These instructions are broken up into multiple sections in order to talk about the hardware build for the Box, The Gimbal, and necessary turrent motifications. 
+These instructions are broken up into multiple sections in order to talk about the hardware build for the Box, The Gimbal, and necessary turret motifications. 
 
 Necessary Hardware
 ============
